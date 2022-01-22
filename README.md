@@ -4,4 +4,5 @@
  
  ## Completed Exercises
   Part 0: Fundamentals of Web Apps (6/6)
+  
   Part 1: Introduction to React (14/14)
