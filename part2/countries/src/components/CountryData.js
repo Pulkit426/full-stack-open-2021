@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react"
 import WeatherData from './WeatherData'
 
 
-const Data = ({countries}) => {
+const CountryData = ({countries}) => {
 
     const [weather,setWeather] = useState({})
     const [flag,setFlag] = useState(false)
@@ -44,6 +44,6 @@ const Data = ({countries}) => {
     }
 
 
-    export default Data
+    export default CountryData
     
 
