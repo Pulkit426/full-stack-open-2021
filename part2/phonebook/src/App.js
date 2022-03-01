@@ -4,6 +4,7 @@ import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import axios from 'axios'
+import phonebookService from './services/phonebook'
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
@@ -12,10 +13,10 @@ const App = () => {
 console.log(persons)
 const hook = () => {
   console.log('hook started')
-  axios.get('http://localhost:3001/persons')
-       .then(response => {
-         console.log('promise fulfilled', response.data)
-         setPersons(response.data)
+  phonebookService.getAll() 
+                  .then(value => {
+                    console.log('promise fulfilled', value)
+                    setPersons(value)
        })
 }
 
@@ -46,13 +47,30 @@ useEffect(hook, [])
   const handleSubmit = (event) => {
     event.preventDefault()
     if(check()){
-    setPersons(prevState => {return [...prevState,newVal]} )
-    document.getElementById('filter').value=""
-    setFilter(prevState => {return {name:'',flag:false}})
+
+    phonebookService.create(newVal)
+        .then(value => {
+          setPersons(prevState => {return [...prevState,value]} )
+          document.getElementById('filter').value=""
+          setFilter(prevState => {return {name:'',flag:false}})
+      } )
+
     }
-    else
-    alert(`${newVal.name} is already added to phonebook`)
+    else{
+
+    if(window.confirm(`${newVal.name} is already added to phonebook, replace the old number with a new one ?`)){
+      const id = persons.filter(item => item.name===newVal.name).map(item => item.id)
+
+      phonebookService.update(id,newVal)
+                      .then(updatedData => 
+                            setPersons(prevState => 
+                                       prevState.map(item => 
+                                                     (item.id!==updatedData.id ? item : updatedData))
+                      ))
     }
+
+  }
+}
 
 
     const handleSearchChange = (event) => {
@@ -61,6 +79,13 @@ useEffect(hook, [])
 
       const temp = persons.filter(person => person.name.toLowerCase().includes(value.toLowerCase()))
       setFilter({name: temp, flag: true})
+    }
+
+    const handleDelete = (id,name) => {
+      if(window.confirm(`Delete ${name}`)){
+       phonebookService.remove(id)
+                        .then(() => setPersons(prevState => prevState.filter(item => item.id!==id)) )
+      }
     }
 
   return (
@@ -72,7 +97,7 @@ useEffect(hook, [])
       <h3> add a new</h3>
       <PersonForm newVal={newVal} handleChange={handleChange} handleSubmit={handleSubmit} />
       <h2>Numbers</h2>
-      <Persons filter={filter} persons= {persons} />
+      <Persons filter={filter} persons= {persons} handleDelete={handleDelete} />
     </div>
   )
 }
