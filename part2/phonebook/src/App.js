@@ -5,19 +5,17 @@ import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import axios from 'axios'
 import phonebookService from './services/phonebook'
+import Notification from './components/Notification'
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
   const [newVal, setNewVal] = useState({name: '',number:''})
   const [filter, setFilter] = useState({name: '', flag:false})
-console.log(persons)
+  const [message,setMessage] = useState(null)
+
 const hook = () => {
-  console.log('hook started')
   phonebookService.getAll() 
-                  .then(value => {
-                    console.log('promise fulfilled', value)
-                    setPersons(value)
-       })
+                  .then(value => setPersons(value))
 }
 
 useEffect(hook, [])
@@ -53,6 +51,8 @@ useEffect(hook, [])
           setPersons(prevState => {return [...prevState,value]} )
           document.getElementById('filter').value=""
           setFilter(prevState => {return {name:'',flag:false}})
+          setMessage(`Added ${value.name}`)
+          setTimeout(() => setMessage(null),5000)
       } )
 
     }
@@ -67,6 +67,13 @@ useEffect(hook, [])
                                        prevState.map(item => 
                                                      (item.id!==updatedData.id ? item : updatedData))
                       ))
+                      .catch(error => {
+                        setMessage(`Information ${newVal.name} has already been removed from the server`)
+                        setTimeout(() => {
+                          setMessage(null)
+                        }, 5000)
+                        setPersons(prevState => prevState.filter(person => person.name!=newVal.name))
+                      })
     }
 
   }
@@ -92,6 +99,7 @@ useEffect(hook, [])
     <div>
 
       <h2>Phonebook</h2>
+      <Notification message={message} />
       <Filter handler={handleSearchChange} />
      
       <h3> add a new</h3>
