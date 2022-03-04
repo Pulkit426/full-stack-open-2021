@@ -6,3 +6,5 @@
   Part 0: Fundamentals of Web Apps (6/6)
   
   Part 1: Introduction to React (14/14)
+
+  Part 2: Communicating with server (20/20)

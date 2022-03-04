@@ -1,12 +1,11 @@
-# Part 1: exercises 1.1 - 1.5 courseinfo
+# Part 2: exercises 2.1.-2.5
 
-## Completed Exercises
- 1.1: course information, step1
+## Completed exercises
 
- 1.2: course information, step2
+Exercises 2.1.-2.5.
 
- 1.3: course information, step3
-
- 1.4: course information, step4
- 
- 1.5: course information, step5
+- [x] 2.1: course contents, step6
+- [x] 2.2: course contents, step7
+- [x] 2.3: course contents, step8
+- [x] 2.4: course contents, step9
+- [x] 2.5: course contents
