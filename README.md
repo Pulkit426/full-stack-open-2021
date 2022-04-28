@@ -8,3 +8,7 @@
   Part 1: Introduction to React (14/14)
 
   Part 2: Communicating with server (20/20)
+
+  Part 3: Programming a server with NodeJS and Express (22/22)
+
+  Part 4: Testing Express servers, user administration (23/23)
