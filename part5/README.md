@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+## Part 5: exercises 5.1 - 5.22
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Completed exercises
 
-## Available Scripts
+Exercises 5.1.-5.4.
 
-In the project directory, you can run:
+- [x] 5.1: bloglist frontend, step1
+- [x] 5.2: bloglist frontend, step2
+- [x] 5.3: bloglist frontend, step3
+- [x] 5.4: bloglist frontend, step4
 
-### `npm start`
+Exercises 5.5.-5.10.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [x] 5.5: Blog list frontend, step5
+- [x] 5.6: Blog list frontend, step6
+- [x] 5.7: Blog list frontend, step7
+- [x] 5.8: Blog list frontend, step8
+- [x] 5.9: Blog list frontend, step9
+- [x] 5.10: Blog list frontend, step10
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Exercises 5.11.-5.12.
 
-### `npm test`
+- [x] 5.11: Blog list frontend, step11
+- [x] 5.12: Blog list frontend, step12
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Exercises 5.13.-5.16.
 
-### `npm run build`
+- [x] 5.13: Blog list tests, step1
+- [x] 5.14: Blog list tests, step2
+- [x] 5.15: Blog list tests, step3
+- [x] 5.16: Blog list tests, step4
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Exercises 5.17.-5.22.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [x] 5.17: bloglist end to end testing, step1
+- [x] 5.18: bloglist end to end testing, step2
+- [x] 5.19: bloglist end to end testing, step3
+- [x] 5.20: bloglist end to end testing, step4
+- [x] 5.21: bloglist end to end testing, step5
+- [x] 5.22: bloglist end to end testing, step6
