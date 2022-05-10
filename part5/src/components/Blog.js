@@ -25,10 +25,12 @@ const Blog = ({ blog, likeBlog, deleteBlog, user }) => {
       <button onClick={toggle}> {visible ? 'hide' : 'View'} </button>
 
       <div style={showVisible}>
-        {blog.url} <br />
-      likes {blog.likes} <button onClick={likeBlog}>Like</button> <br />
-        {/* {blog.user.name} <br /> */}
-        {console.log(blog.user)}
+        <div> {blog.url} </div>
+        <div>
+      likes {blog.likes} <button onClick={likeBlog}>Like</button>
+        </div>
+        {/* {blog.user.name}
+        {console.log(blog.user)} */}
 
 
         <button onClick={deleteBlog}> Delete </button>
