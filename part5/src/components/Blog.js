@@ -20,7 +20,7 @@ const Blog = ({ blog, likeBlog, deleteBlog, user }) => {
   }
 
   return (
-    <div style={blogStyle}>
+    <div style={blogStyle} className='blog'>
       {blog.title} by  {blog.author}
       <button onClick={toggle}> {visible ? 'hide' : 'View'} </button>
 
@@ -29,11 +29,11 @@ const Blog = ({ blog, likeBlog, deleteBlog, user }) => {
         <div>
       likes {blog.likes} <button onClick={likeBlog}>Like</button>
         </div>
-        {/* {blog.user.name}
-        {console.log(blog.user)} */}
+        {blog.user.name}
+        {console.log(blog.user)}
 
 
-        <button onClick={deleteBlog}> Delete </button>
+        {user.username ===blog.user.username &&  <button onClick={deleteBlog}> Delete </button>}
 
       </div>
     </div>

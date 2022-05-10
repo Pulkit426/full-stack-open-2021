@@ -4,19 +4,30 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import Blog from './Blog'
 
 describe('Testing Blog component: ', () => {
+  const user= {
+    name: 'Arto Hellas',
+    username: 'hellas'
+  }
+
+  const blog = {
+    title: 'Blog for testing',
+    author: 'Pulkit',
+    url: 'blogs/testing',
+    likes: 9,
+    user: {
+      name: 'Arto Hellas',
+      username: 'hellas'
+    }
+  }
 
   test('renders blog title and author', async () => {
 
-    const blog = {
-      title: 'Blog for testing',
-      author: 'Pulkit',
-      url: 'blogs/testing',
-      likes: 9
-    }
+
 
     const mockHandler = jest.fn()
 
-    render(<Blog blog={blog}  likeBlog={mockHandler} deleteBlog={mockHandler} />)
+
+    render(<Blog blog={blog}  likeBlog={mockHandler} deleteBlog={mockHandler} user={user}/>)
 
 
     const element= screen.getByText('Blog for testing by Pulkit')
@@ -28,16 +39,9 @@ describe('Testing Blog component: ', () => {
 
   test('Shows all info on clicking View button', async () => {
 
-    const blog = {
-      title: 'Blog for testing',
-      author: 'Pulkit',
-      url: 'blogs/testing',
-      likes: 9
-    }
-
     const mockHandler = jest.fn()
 
-    render(<Blog blog={blog}  likeBlog={mockHandler} deleteBlog={mockHandler} />)
+    render(<Blog blog={blog}  likeBlog={mockHandler} deleteBlog={mockHandler} user={user} />)
 
 
     const button = screen.getByText('View')
@@ -53,16 +57,10 @@ describe('Testing Blog component: ', () => {
 
   test('Like button clicked twice', async () => {
 
-    const blog = {
-      title: 'Blog for testing',
-      author: 'Pulkit',
-      url: 'blogs/testing',
-      likes: 9
-    }
     const mockLikeHandler = jest.fn()
     const mockHandler = jest.fn()
 
-    render(<Blog blog={blog}  likeBlog={mockLikeHandler} deleteBlog={mockHandler} />)
+    render(<Blog blog={blog}  likeBlog={mockLikeHandler} deleteBlog={mockHandler} user={user} />)
 
 
 

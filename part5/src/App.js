@@ -140,15 +140,13 @@ const App = () => {
       <div>
         <h2>Log in to application</h2>
         <h1>{notification}</h1>
-        <Togglable buttonLabel="Login" >
-          <LoginForm username={username}
-            password = {password}
-            setUsername={setUsername}
-            setPassword={setPassword}
-            handleLogin={handleLogin}
+        <LoginForm username={username}
+          password = {password}
+          setUsername={setUsername}
+          setPassword={setPassword}
+          handleLogin={handleLogin}
 
-          />
-        </Togglable>
+        />
 
       </div>
 
@@ -169,7 +167,7 @@ const App = () => {
         </Togglable>
 
 
-        <div>
+        <div id='blogListWrapper'>
           {blogs.length &&
     blogs.sort((first,second) => second.likes - first.likes)
       .map(blog =>
