@@ -13,4 +13,6 @@
 
   Part 4: Testing Express servers, user administration (23/23)
   
-  Part 5: Testing React apps 22/22
+  Part 5: Testing React apps (22/22)
+
+Part 6: State management with Redux (21/21)
