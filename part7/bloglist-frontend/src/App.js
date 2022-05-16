@@ -1,19 +1,22 @@
 // eslint-disable-next-line no-unused-vars
 import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Blog from "./components/Blog";
 import BlogForm from "./components/BlogForm";
 import LoginForm from "./components/LoginForm";
 import Togglable from "./components/Togglable";
 import blogService from "./services/blogs";
 import loginService from "./services/login";
+import { setNotification } from "./reducers/notificationReducer";
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [notification, setNotification] = useState("");
+  const notification = useSelector(state => state.notification)
+  const dispatch = useDispatch()
 
   const blogFormRef = useRef();
 
@@ -35,10 +38,10 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setNotification(""), 4000);
-    return () => clearTimeout(timer);
-  }, [notification]);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => setNotification(""), 4000);
+  //   return () => clearTimeout(timer);
+  // }, [notification]);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -51,7 +54,7 @@ const App = () => {
       setUsername("");
       setPassword("");
     } catch (error) {
-      setNotification(`${error.response.data.error}`);
+      dispatch(setNotification(`${error.response.data.error}`, ))
       console.warn(error);
     }
   };
@@ -66,12 +69,12 @@ const App = () => {
     try {
       await blogService.create(newBlog);
       blogFormRef.current.toggleVisibility();
-      setNotification(`${newBlog.title} by ${newBlog.author} added`);
+      dispatch(setNotification(`${newBlog.title} by ${newBlog.author} added`))
 
       const updatedBlogList = await blogService.getAll();
       setBlogs(updatedBlogList);
     } catch (error) {
-      setNotification(`${error.response.data.error}`);
+      dispatch(setNotification(`${error.response.data.error}`))
       console.warn(error);
     }
   };
@@ -97,7 +100,7 @@ const App = () => {
           setBlogs(updatedBlogList);
         }
       } catch (error) {
-        setNotification(`${error.response.data.error}`);
+        dispatch(setNotification(`${error.response.data.error}`))
         console.warn(error);
       }
     }
@@ -109,10 +112,10 @@ const App = () => {
         await blogService.remove(id);
         const updatedBlogList = blogs.filter((blog) => blog.id !== id);
         setBlogs(updatedBlogList);
-        setNotification("Deleted");
+        dispatch(setNotification("Deleted"))
       }
     } catch (error) {
-      setNotification(`${error.response.data.error}`);
+      dispatch(setNotification(`${error.response.data.error}`))
       console.warn(error);
     }
   };
