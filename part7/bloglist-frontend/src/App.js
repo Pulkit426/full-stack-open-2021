@@ -10,11 +10,12 @@ import blogService from "./services/blogs";
 import loginService from "./services/login";
 import { setNotification } from "./reducers/notificationReducer";
 import { initializeBlogs, createBlog, likeBlog, deleteBlog } from './reducers/blogsReducer'
+import { initializeUsers, login,logout } from "./reducers/usersReducer";
 
 const App = () => {
   const blogs = useSelector(state => state.blogs)
   console.log(blogs)
-  const [user, setUser] = useState(null);
+ const user = useSelector(state => state.users)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const notification = useSelector(state => state.notification)
@@ -28,22 +29,25 @@ const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const loggedUser = window.localStorage.getItem("loggedUser");
-    if (loggedUser) {
-      const user = JSON.parse(loggedUser);
-      setUser(user);
-      blogService.setToken(user.token);
-    }
+    // const loggedUser = window.localStorage.getItem("loggedUser");
+    // if (loggedUser) {
+    //   const user = JSON.parse(loggedUser);
+    //   setUser(user);
+    //   blogService.setToken(user.token);
+    // }
+    dispatch(initializeUsers())
+    console.log("INSIDE USE EFFECT, user - ", user)
   }, []);
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
     try {
-      const user = await loginService.login({ username, password });
-      window.localStorage.setItem("loggedUser", JSON.stringify(user));
-      blogService.setToken(user.token);
-      setUser(user);
+      // const user = await loginService.login({ username, password });
+      // window.localStorage.setItem("loggedUser", JSON.stringify(user));
+      // blogService.setToken(user.token);
+      // setUser(user);
+      dispatch(login(username,password))
       setUsername("");
       setPassword("");
     } catch (error) {
@@ -54,8 +58,9 @@ const App = () => {
 
   const handleLogout = () => {
     window.localStorage.clear();
-    setUser(null);
-    blogService.setToken(null);
+    // setUser(null);
+    // blogService.setToken(null);
+    dispatch(logout())
   };
 
   const addBlog = async (newBlog) => {
