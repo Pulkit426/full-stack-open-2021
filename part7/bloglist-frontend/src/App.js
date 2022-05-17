@@ -9,9 +9,11 @@ import Togglable from "./components/Togglable";
 import blogService from "./services/blogs";
 import loginService from "./services/login";
 import { setNotification } from "./reducers/notificationReducer";
+import { initializeBlogs, createBlog, likeBlog, deleteBlog } from './reducers/blogsReducer'
 
 const App = () => {
-  const [blogs, setBlogs] = useState([]);
+  const blogs = useSelector(state => state.blogs)
+  console.log(blogs)
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -20,14 +22,10 @@ const App = () => {
 
   const blogFormRef = useRef();
 
-  const setInitialBlogs = async () => {
-    const request = await blogService.getAll();
-    setBlogs(request);
-  };
-
   useEffect(() => {
-    setInitialBlogs();
-  }, []);
+    dispatch(initializeBlogs())
+    console.log(blogs)
+  }, [dispatch]);
 
   useEffect(() => {
     const loggedUser = window.localStorage.getItem("loggedUser");
@@ -37,11 +35,6 @@ const App = () => {
       blogService.setToken(user.token);
     }
   }, []);
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => setNotification(""), 4000);
-  //   return () => clearTimeout(timer);
-  // }, [notification]);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -67,58 +60,34 @@ const App = () => {
 
   const addBlog = async (newBlog) => {
     try {
-      await blogService.create(newBlog);
-      blogFormRef.current.toggleVisibility();
-      dispatch(setNotification(`${newBlog.title} by ${newBlog.author} added`))
-
-      const updatedBlogList = await blogService.getAll();
-      setBlogs(updatedBlogList);
-    } catch (error) {
+      dispatch(createBlog(newBlog))
+      blogFormRef.current.toggleVisibility()
+    } 
+    catch (error) {
       dispatch(setNotification(`${error.response.data.error}`))
       console.warn(error);
     }
   };
 
-  const likeBlog = async (id) => {
-    const blogToUpdate = blogs.find((blog) => blog.id === id);
-    console.log(blogToUpdate);
-    if (blogToUpdate) {
-      try {
-        const likes = blogToUpdate.likes ? blogToUpdate.likes + 1 : 1;
-        const updatedBlog = {
-          ...blogToUpdate,
-          likes,
-        };
-        console.log(updatedBlog);
-
-        const response = await blogService.update(updatedBlog.id, updatedBlog);
-
-        if (response) {
-          const updatedBlogList = blogs.map((blog) =>
-            blog.id === id ? updatedBlog : blog
-          );
-          setBlogs(updatedBlogList);
+  const addLike = async (id) => {
+    try{
+      dispatch(likeBlog(id))
+    }
+    catch (error) {
+          dispatch(setNotification(`${error.response.data.error}`))
+          console.warn(error);
         }
-      } catch (error) {
-        dispatch(setNotification(`${error.response.data.error}`))
-        console.warn(error);
-      }
-    }
   };
 
-  const deleteBlog = async (id) => {
+  const removeBlog = async (id) => {
     try {
-      if (window.confirm("Do you want to delete this")) {
-        await blogService.remove(id);
-        const updatedBlogList = blogs.filter((blog) => blog.id !== id);
-        setBlogs(updatedBlogList);
-        dispatch(setNotification("Deleted"))
-      }
-    } catch (error) {
+      dispatch(deleteBlog(id))
+    } 
+    catch (error) {
       dispatch(setNotification(`${error.response.data.error}`))
       console.warn(error);
     }
-  };
+  }
 
   const renderLoginForm = () => {
     return (
@@ -149,13 +118,14 @@ const App = () => {
         <div id="blogListWrapper">
           {blogs.length &&
             blogs
+              .slice()
               .sort((first, second) => second.likes - first.likes)
               .map((blog) => (
                 <Blog
                   key={blog.id}
                   blog={blog}
-                  likeBlog={() => likeBlog(blog.id)}
-                  deleteBlog={() => deleteBlog(blog.id)}
+                  likeBlog={() => addLike(blog.id)}
+                  deleteBlog={() => removeBlog(blog.id)}
                   user={user}
                 />
               ))}
