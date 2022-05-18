@@ -137,7 +137,7 @@ const App = () => {
         </div>
       </div>
     );
-  };
+  }; 
 
   return <div>{user && user.token ? renderBlogs() : renderLoginForm()}</div>;
 };
