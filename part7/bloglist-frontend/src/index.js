@@ -6,6 +6,9 @@ import {configureStore} from '@reduxjs/toolkit'
 import notificationReducer from './reducers/notificationReducer'
 import blogReducer from './reducers/blogsReducer'
 import usersReducer from './reducers/usersReducer'
+import {
+    BrowserRouter as Router
+  } from "react-router-dom"
 
 const store = configureStore({
     reducer: {
@@ -16,6 +19,9 @@ const store = configureStore({
 })
 ReactDOM.createRoot(document.getElementById("root")).render(
 <Provider store={store}>
-<App />
+    <Router>
+    <App />
+    </Router>
+
 </Provider>
 );
