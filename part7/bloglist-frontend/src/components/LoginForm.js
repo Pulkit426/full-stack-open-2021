@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Button } from "@mui/material";
+
 
 const LoginForm = ({
   username,
@@ -10,6 +12,7 @@ const LoginForm = ({
 }) => {
   return (
     <div>
+
       <form onSubmit={handleLogin}>
         <div>
           Username{" "}
@@ -31,10 +34,10 @@ const LoginForm = ({
             onChange={({ target }) => setPassword(target.value)}
           />
         </div>
-        <button id="login-button" type="submit">
+        <Button id="login-button" type="submit" variant="contained" color="primary">
           {" "}
           login{" "}
-        </button>
+        </Button>
       </form>
     </div>
   );

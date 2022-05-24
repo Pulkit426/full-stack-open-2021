@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { Button } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 const BlogForm = ({ addBlog }) => {
   const [newBlog, setNewBlog] = useState({
@@ -66,10 +68,10 @@ const BlogForm = ({ addBlog }) => {
           />
         </div>
 
-        <button id="create-form" type="submit">
+        <Button id="create-form" type="submit" variant="contained"  size="small" startIcon={<AddIcon />} >
           {" "}
           Create{" "}
-        </button>
+        </Button>
       </form>
     </div>
   );

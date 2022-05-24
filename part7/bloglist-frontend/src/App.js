@@ -19,6 +19,11 @@ import {
 
 import BlogsByUser from "./components/BlogsByUser";
 import DetailedBlogPost from "./components/DetailedBlogPost";
+import 'fontsource-roboto'
+import { Button } from "@mui/material";
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Container } from '@mui/material';
+import { Typography } from '@mui/material';
 
 const App = () => {
   const blogs = useSelector(state => state.blogs)
@@ -75,8 +80,6 @@ const App = () => {
 
   const handleLogout = () => {
     window.localStorage.clear();
-    // setUser(null);
-    // blogService.setToken(null);
     dispatch(logout())
     navigate('/')
   };
@@ -115,7 +118,14 @@ const App = () => {
   const renderLoginForm = () => {
     return (
       <div>
-        <h2>Log in to application</h2>
+        
+        <Container maxWidth='sm' style={{backgroundColor:'cyan'}}>
+        <Typography align="center" gutterBottom="true" variant="h1">
+            TerraPost
+          </Typography> 
+          
+          <Typography align="center" gutterBottom="true" variant="body1">
+        Log in to application
         <LoginForm
           username={username}
           password={password}
@@ -123,6 +133,8 @@ const App = () => {
           setPassword={setPassword}
           handleLogin={handleLogin}
         />
+        </Typography>
+        </Container>
       </div>
     );
   };
@@ -193,10 +205,10 @@ const App = () => {
   return (<div>
 
       <div> 
-        <Link style={padding} to='/'>blogs</Link>
+       {user && user.token && <span style= {padding}> <Link style={padding} to='/'>blogs</Link>
         <Link style={padding} to='/users'>users</Link>
-        {user && user.token && <span style= {padding}>{user.name} logged in
-    <button onClick={handleLogout}> logout </button> </span>}
+        {user.name} logged in
+    <Button endIcon={<LogoutIcon />} variant="outlined" color="secondary" onClick={handleLogout}> logout </Button> </span>}
       </div>
       <h3>{notification}</h3>
     <h2>BLOGS</h2>
