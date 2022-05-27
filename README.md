@@ -1,4 +1,4 @@
-# Full stack Open 2021
+# [Full stack Open 2021](https://fullstackopen.com/en/)
  Exercise submission repository for full stack open course
  <br>
  
@@ -18,3 +18,6 @@
   Part 6: State management with Redux (21/21)
   
   Part 7: React router, custom hooks, styling app with CSS and webpack(21/21)
+
+
+## [Certificate](https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/50eeafbe97775a7efae1496e3d518179)
