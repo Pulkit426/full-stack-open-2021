@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Button } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 const BlogForm = ({ addBlog }) => {
   const [newBlog, setNewBlog] = useState({
     title: "",
     author: "",
+    content: "",
     url: "",
   });
 
@@ -33,36 +34,44 @@ const BlogForm = ({ addBlog }) => {
 
       <form onSubmit={handleSubmit}>
         <div>
-          title{" "}
-          <input
+          
+          <TextField variant="outlined"
             id="title"
             type="text"
             name="title"
-            placeholder="title input"
+            placeholder="Title"
             value={newBlog.title}
             onChange={handleChange}
           />
         </div>
 
         <div>
-          author{" "}
-          <input
+
+        <TextField variant="outlined"
             id="author"
             type="text"
             name="author"
-            placeholder="author input"
+            placeholder="Author"
             value={newBlog.author}
             onChange={handleChange}
           />
         </div>
 
+        <TextField variant="outlined"
+            id="content"
+            type="text"
+            name="content"
+            placeholder="Content"
+            value={newBlog.content}
+            onChange={handleChange}
+          />
+
         <div>
-          url{" "}
-          <input
+        <TextField variant="outlined"
             id="url"
             type="text"
             name="url"
-            placeholder="url input"
+            placeholder="URL"
             value={newBlog.url}
             onChange={handleChange}
           />

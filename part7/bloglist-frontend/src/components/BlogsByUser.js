@@ -1,5 +1,6 @@
 import React from "react"
 import { useParams } from "react-router-dom"
+import { Typography,Card,Table, TableBody, TableHead, TableRow, TableCell } from "@mui/material"
 
   const BlogsByUser = (props) => {
 
@@ -16,17 +17,36 @@ import { useParams } from "react-router-dom"
 
     return (
       <div>
-        <h2>{detailedUser[0].name}</h2>
-        {detailedUser[0].blogs.length===0 
-        ? <h3>No Blogs added yet</h3>
-        : <div>
-        <h3>added blogs</h3>
-        <ul>
-        {detailedUser[0].blogs.map(blog => <li>{blog.title}</li>)}
-        </ul>
-        </div>}
+        <Typography align="center" variant="h4"> {detailedUser[0].name} </Typography>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "1.5rem"}}>
+      <Card align="center" sx={{width: 300}}> 
+      {detailedUser[0].blogs.length===0 
+        ? <Typography align="center" variant="body1">No Blogs added yet </Typography>
+        :  <Table>
 
-        </div>
+          <TableHead>
+            <TableRow>
+              <TableCell> <Typography align="center" variant="body1">Added Blogs </Typography> </TableCell>
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+          {detailedUser[0].blogs.map(blog => (
+          <TableRow key={blog.id}>
+            <TableCell component="th" scope="row" align="center">{blog.title} </TableCell> 
+          </TableRow>))}
+            
+          </TableBody>
+       
+       
+          
+        </Table>
+        }
+
+      </Card>
+      </div>
+
+      </div>
 
     )
   }

@@ -4,3 +4,11 @@
 }
 
 
+.blog{
+  display: flex;
+  flex-wrap: wrap;
+  direction: row;
+  justify-content:center ;
+  align-items: center;
+
+}
