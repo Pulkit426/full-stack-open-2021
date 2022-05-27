@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+
+.blog{
+  display: flex;
+  flex-wrap: wrap;
+  direction: row;
+  justify-content:center ;
+  align-items: center;
+
+}

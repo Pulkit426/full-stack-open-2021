@@ -15,4 +15,6 @@
   
   Part 5: Testing React apps (22/22)
 
-Part 6: State management with Redux (21/21)
+  Part 6: State management with Redux (21/21)
+  
+  Part 7: React router, custom hooks, styling app with CSS and webpack(21/21)
